@@ -56,6 +56,7 @@ while (True):
         dicRow = {"task": todo, "priority": intensity}  # variable for new dictionary entry to list
         objFile = open(strFile, 'w')  # open file with write permission
         lstTable.append(dicRow)  # add new dictionary to list
+        objFile.close()
         continue
 
     # Step 5 - Remove a new item from the list/Table
