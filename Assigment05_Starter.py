@@ -42,42 +42,46 @@ while (True):
     """)
     strChoice = str(input("Which option would you like to perform? [1 to 5] - "))
     print()  # adding a new line for looks
+
     # Step 3 - Show the current items in the table
     if (strChoice.strip() == '1'):
-        for row in lstTable:
-            print(row["task"] + ' -- ' + row["priority"])
+        for row in lstTable:  # for loop examines each row in the table
+            print(row["task"] + ' -- ' + row["priority"])  # print each rows value for task and priority
         continue
 
     # Step 4 - Add a new item to the list/Table
     elif (strChoice.strip() == '2'):
-        item = input("Enter a new task >>>")
-        value = input("Now enter its priority.  High or Low. >>>")
-        dicRow = {"task": item, "priority": value}
-        objFile = open(strFile, 'w')
-        lstTable.append(dicRow)
-        objFile.close()
+        todo = input("Enter a new task >>>")  # create variable for new task
+        intensity = input("Now enter its priority.  High or Low. >>>")  # create variable for the new task priority
+        dicRow = {"task": todo, "priority": intensity}  # variable for new dictionary entry to list
+        objFile = open(strFile, 'w')  # open file with write permission
+        lstTable.append(dicRow)  # add new dictionary to list
         continue
 
     # Step 5 - Remove a new item from the list/Table
     elif (strChoice.strip() == '3'):
-        objFile = open(strFile, 'w')
-        x = 1
-        for row in lstTable:
-            print(x, ("."), row["task"] + ' -- ' + row["priority"])
-            x += 1
-        sel = input("Enter the task name to delete.  Then press enter.")
-        x -= 1
-        del lstTable[x]
-        x = 1
-        print(x, ("."), row["task"] + ' -- ' + row["priority"])
-        objFile.close()
-
+        print()
+        entry = input("which task would you like to remove?  Use the name of the task.")  # input for which to remove
+        for row in lstTable:  # loop through each dictionary in list
+            print(row["task"] + ' -- ' + row["priority"])  # print to screen each dictionary in easy to read format
+        for row in lstTable:  # loop through each dictionary in list
+            if row["task"].lower() == entry.lower():  # determine if the input 'entry' is located in a dictionary
+                lstTable.remove(row)  # if entry equals a found entry, remove row
+        print()  # add line for looks
+        print("Updated List: \n")
+        for row in lstTable:  # loop through each dictionary in li
+            print(row["task"] + ' -- ' + row["priority"])  # reprint the new list
         continue
+
     # Step 6 - Save tasks to the ToDoToDoList.txt file
     elif (strChoice.strip() == '4'):
-        # TODO: Add Code Here
+        objFile = open(strFile, 'w')  # open file with write permission
+        for row in lstTable:  # loop through each dictionary in list
+            objFile.write(row["task"] + "," + row["priority"] + "\n")  # write new dictionaries to file
+        objFile.close()  # close file
         continue
+
     # Step 7 - Exit program
     elif (strChoice.strip() == '5'):
-        # TODO: Add Code Here
+        # No additional code needed.
         break  # and Exit the program
