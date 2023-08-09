@@ -68,7 +68,7 @@ while (True):
                 lstTable.remove(row)  # if entry equals a found entry, remove row
         print()  # add line for looks
         print("Updated List: \n")
-        for row in lstTable:  # loop through each dictionary in li
+        for row in lstTable:  # loop through each dictionary in list
             print(row["task"] + ' -- ' + row["priority"])  # reprint the new list
         continue
 
@@ -78,6 +78,7 @@ while (True):
         for row in lstTable:  # loop through each dictionary in list
             objFile.write(row["task"] + "," + row["priority"] + "\n")  # write new dictionaries to file
         objFile.close()  # close file
+        print("data saved")
         continue
 
     # Step 7 - Exit program
